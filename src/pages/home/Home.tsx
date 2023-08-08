@@ -13,7 +13,7 @@ export default function Home() {
   },[roomid])
 
   return (
-    <>
+    <div className='home-container'>
       <h1 className='snake-game-title'>Snake Game</h1>
       <Input placeholder='请输入房间号' size='large' className="roomid-input"
         maxLength={6} value={roomid} 
@@ -23,6 +23,6 @@ export default function Home() {
       <div className='join-btn-group'>
         <Button size='large' onClick={handleJoinClick}>加入房间</Button>
       </div>
-    </>
+    </div>
   )
 }

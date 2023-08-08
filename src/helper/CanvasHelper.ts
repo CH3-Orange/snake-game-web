@@ -1,3 +1,4 @@
+import GameController from "./GameController";
 import SnakeHelper, { SnakeInfo } from "./SnakeHelper";
 import { Vector } from "./Vector";
 
@@ -20,7 +21,10 @@ class CanvasHelper{
       this.clearCanvas();
       this.paintDot(451,263,6,"white")
       this.paintDot(491, 203, 2, "white")
-      this.test();
+      setTimeout(() => {
+        console.log('game start');
+        GameController.init();
+      },2000)
     }
   }
 
@@ -48,32 +52,7 @@ class CanvasHelper{
       }
     })
   }
-  test() {
-    const s1 = this.__test_genSnake(1,413,395,5,new Vector(-1,0.5).getNormalize())
-    const s2 = this.__test_genSnake(2,120,300,5,new Vector(0,1).getNormalize())
-    const s3 = this.__test_genSnake(3,556,114,10,new Vector(-1,-1).getNormalize())
-    const s4 = this.__test_genSnake(4,276,336,10,new Vector(1,0.5).getNormalize())
-    SnakeHelper.setSnake(s1);
-    SnakeHelper.setSnake(s2);
-    SnakeHelper.setSnake(s3);
-    SnakeHelper.setSnake(s4);
-    SnakeHelper.getAllSnake().forEach(s => {
-      console.log(s);
-      this.paintSnake(s)
-    });
-    
-  }
-  __test_genSnake(id:number,x:number,y:number,len:number,dir:Vector) {
-    const snake = new SnakeInfo(id);
-    snake.Nodes.push(new Vector(x, y));
-    const snakeGenDir = dir.multe(-20);
-    for (let i = 1; i < len; i++){
-      const lastDot = snake.Nodes[i - 1];
-      snake.Nodes.push(lastDot.add(snakeGenDir));
-    }
-    snake.Direction = dir.getNormalize();
-    return snake;
-  }
+  
 }
 
 export default new CanvasHelper();
